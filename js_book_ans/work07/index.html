@@ -19,7 +19,10 @@
         <div class="container" id="work">
             <section>
                 <input id="input1" type="text" placeholder="入力してみよ" />
-                <button onclick="onClickBtn1(this)">実行</button>
+                <button onclick="onClickBtn1(event, this)">実行1</button>
+                <button onclick="onClickBtn2(event, this)">実行2</button>
+                <button onclick="onClickBtn3(event, this)">実行3</button>
+                <button onclick="onClickBtn4(event, this)">実行4</button>
                 <hr />
                 <div id="work1"></div>
             </section>
@@ -33,6 +36,6 @@
 </body>
 
 <!-- JavaScriptを外に記述 -->
-<script src="script.js"></script>
+<script src="scriptEvent.js"></script>
 
 </html>

@@ -162,7 +162,7 @@ function onClickBtn4(event, element) {
             }
             , {
                 duration: 2000,
-                iterations: Infinity
+                iterations: 2
             }
         );
     });

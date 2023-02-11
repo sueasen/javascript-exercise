@@ -35,7 +35,7 @@
   transform: rotate(-45deg);
 }
 
-.looding {
+.loading {
   position: fixed;
   top: 0;
   left: 0;
@@ -47,25 +47,25 @@
   background-color: rgb(0, 0, 0, 0.6);
 }
 
-.looding>div {
+.loading>div {
   width: 30px;
   height: 30px;
   background-color: rgb(255, 255, 255);
   border-radius: 100%;
   display: inline-block;
-  animation: looding-dot 1.4s infinite;
+  animation: loading-dot 1.4s infinite;
   margin: 10px;
 }
 
-.looding .dot1 {
+.loading .dot1 {
   animation-delay: -0.32s;
 }
 
-.looding .dot2 {
+.loading .dot2 {
   animation-delay: -0.16s;
 }
 
-@keyframes looding-dot {
+@keyframes loading-dot {
 
   0% {
     opacity: 1;

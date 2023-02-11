@@ -11,7 +11,7 @@ window.addEventListener('load', (e) => {
 			.then(json => {
 				console.log(json);
 				dom.src = json.file;
-				dom.addEventListener('load', (e) => removeLooding());
+				dom.addEventListener('load', (e) => removeLoading());
 				dom.height = 300;
 				dom.onclick = () => img.src = dom.src;
 				slideImages[i] = dom.src;
@@ -20,7 +20,7 @@ window.addEventListener('load', (e) => {
 				document.querySelector('#prev').onclick = () => slideMoveClick(img, slideImages, -1);
 				document.querySelector('#next').onclick = () => slideMoveClick(img, slideImages, 1);
 				img.src = slideImages[0];
-				img.addEventListener('load', (e) => removeLooding());
+				img.addEventListener('load', (e) => removeLoading());
 			})
 			.catch((error) => console.log(error));
 	});
@@ -47,9 +47,9 @@ function slideMoveClick(img, slideImages, shift) {
 }
 
 /**
- * slide 関連の img が完全に読み込まれた場合、looding を削除します
+ * slide 関連の img が完全に読み込まれた場合、loading を削除します
  */
-function removeLooding() {
+function removeLoading() {
 	let imageCompleteds = [...document.querySelectorAll('.thumbnail img')].map(d => d.complete);
 	imageCompleteds.push(document.querySelector('.image_box img').complete);
 	if (imageCompleteds.includes(false)) return;

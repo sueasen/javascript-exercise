@@ -53,5 +53,5 @@ function removeLooding() {
 	let imageCompleteds = [...document.querySelectorAll('.thumbnail img')].map(d => d.complete);
 	imageCompleteds.push(document.querySelector('.image_box img').complete);
 	if (imageCompleteds.includes(false)) return;
-	document.querySelector('.looding')?.remove();
+	document.querySelector('.loading')?.remove();
 }

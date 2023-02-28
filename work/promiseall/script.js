@@ -2,44 +2,42 @@
  * スライダー、サムネイルにイベントを設定します
  */
 window.addEventListener('load', async (e) => {
-	const results = [];
-	for (const dom of document.querySelectorAll('.thumbnail img')) {
-		results.push(fetch("https://aws.random.cat/meow")
-			.then(response => response.json())
-			.then(json => new Promise((resolve, reject) => resolve({ 'json': json, 'img': dom })))
-			.catch((error) => console.log(error)));
-	}
-
-	let img = document.querySelector('.image_box img');
-	let slideImages = [...(await Promise.all(results))].map(result => {
-		console.log(result.json);
-		result.img.src = result.json.file;
-		result.img.onload = () => removeLoading();
-		result.img.height = 300;
-		result.img.onclick = () => img.src = result.img.src;
-		return result.img.src;
+	const slideDatas = {
+		top : document.querySelector('.image_box img')
+		, now : document.querySelector('.thumbnail img')
+		, list : [...document.querySelectorAll('.thumbnail img')]
+	};
+	slideDatas.list.forEach(dom => dom.onclick = () => {
+		slideDatas.now = dom;
+		slideDatas.top.src = slideDatas.now.src;
 	});
-	document.querySelector('#prev').onclick = () => slideMoveClick(img, slideImages, -1);
-	document.querySelector('#next').onclick = () => slideMoveClick(img, slideImages, 1);
-	img.src = slideImages[0];
-	img.onload = () => removeLoading();
-});
+	document.querySelector('#prev').onclick = () => slideMoveClick(slideDatas, -1);
+	document.querySelector('#next').onclick = () => slideMoveClick(slideDatas, 1);
+	slideDatas.top.src = slideDatas.now.src;
 
-function apiJson(url) {
-	return fetch("https://aws.random.cat/meow")
-		.then(response => response.json())
-		.catch((error) => console.log(error));
-}
+	const results = slideDatas.list.map(d => {
+		return fetch("https://aws.random.cat/meow")
+			.then(response => response.json())
+			.then(json => new Promise((resolve, reject) => resolve({ 'json': json, 'dom': d })))
+			.catch(error => console.log(error));
+	});
+
+	(await Promise.all(results)).forEach(result => {
+		console.log(result.json);
+		result.dom.src = result.json.file;
+		result.dom.onload = () => removeLoading(slideDatas);
+	});
+});
 
 /**
  * slide の prev, next を押下時の処理します
- * @param {HTMLImageElement} img imgタグ
- * @param {Array} slideImages スライダー画像配列
+ * @param { {[key: String]: Object} } slideDatas スライダー画像情報
  * @param {Number} shift シフト値
  */
-function slideMoveClick(img, slideImages, shift) {
-	img.src = slideImages[(slideImages.length + slideImages.indexOf(img.src) + shift) % slideImages.length];
-	img.animate(
+function slideMoveClick(slideDatas, shift) {
+	slideDatas.now = slideDatas.list[(slideDatas.list.length + slideDatas.list.indexOf(slideDatas.now) + shift) % slideDatas.list.length];
+	slideDatas.top.src = slideDatas.now.src;
+	slideDatas.top.animate(
 		{
 			transform: ['translateX(' + (-30 * shift) + 'px)', 'translateX(0px)']
 			, opacity: [0.2, 1]
@@ -53,10 +51,13 @@ function slideMoveClick(img, slideImages, shift) {
 
 /**
  * slide 関連の img が完全に読み込まれた場合、loading を削除します
+ * @param { {[key: String]: Object} } slideDatas スライダー画像情報
  */
-function removeLoading() {
-	let imageCompleteds = [...document.querySelectorAll('.thumbnail img, .image_box img')].map(d => d.complete);
+function removeLoading(slideDatas) {
+	let imageCompleteds = slideDatas.list.map(d => d.complete);
 	if (imageCompleteds.includes(false)) return;
 	document.querySelector('.loading')?.classList.toggle('is-loading');
-	document.querySelectorAll('.thumbnail img, .image_box img').forEach(img => img.onload = '');
+	slideDatas.list.forEach(img => img.onload = '');
+	slideDatas.now = slideDatas.list[0];
+	slideDatas.top.src = slideDatas.now.src;
 }

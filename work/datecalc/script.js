@@ -1,14 +1,13 @@
 const weekend = ['日', '月', '火', '水', '木', '金', '土'];
 const now = new Date();
 document.querySelector("#now").textContent = dateFormat(now);
-now.getSeconds
 
 const toWeekEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate() + (6 - now.getDay()));
 if (diffDate(now, toWeekEnd) == 0) {
     document.querySelector("#weekend").textContent = 0;
 } else {
     const diffTime = diffTimes(now, toWeekEnd);
-    document.querySelector("#weekend").textContent = diffTime.hour + '時間 (' + diffTime.minute + '分)';
+    document.querySelector("#weekend").textContent = diffDate(now, toWeekEnd) + '日 : ' + diffTime.hour + '時間 : ' + diffTime.minute + '分';
 }
 
 const toYearEnd = new Date(now.getFullYear() + 1, 0, 1);
@@ -16,7 +15,7 @@ if (diffDate(now, toYearEnd) == 0) {
     document.querySelector("#yearend").textContent = 0;
 } else {
     const diffTime = diffTimes(now, toYearEnd);
-    document.querySelector("#yearend").textContent = diffTime.hour + '時間 (' + diffTime.minute + '分)';
+    document.querySelector("#yearend").textContent = diffDate(now, toYearEnd) + '日 : ' + diffTime.hour + '時間 : ' + diffTime.minute + '分';
 }
 
 // 日付フォーマット YYYY/MM/DD(a)HH:MI
@@ -41,6 +40,7 @@ function diffTimes(from, to) {
     const diffTime = to.getTime() - from.getTime();
     return {
         time: diffTime,
+        day: Math.floor(diffTime / (1000 * 60 * 60 * 24)),
         hour: Math.floor(diffTime / (1000 * 60 * 60)),
         minute: Math.floor(diffTime / (1000 * 60)),
         Second: Math.floor(diffTime / 1000)

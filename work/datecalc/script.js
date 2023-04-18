@@ -18,10 +18,10 @@ if (diffDate(now, toYearEnd) == 0) {
 }
 
 // 日付フォーマット YYYY/MM/DD(a)HH:MI:SS
-const formatOptions = {
-    year: "numeric", month: "2-digit", day: "2-digit", weekday: 'short', hour: "2-digit", minute: "2-digit", second: "2-digit"
-}
 function dateFormat(date) {
+    const formatOptions = {
+        year: "numeric", month: "2-digit", day: "2-digit", weekday: 'short', hour: "2-digit", minute: "2-digit", second: "2-digit"
+    }
     return date.toLocaleString("ja-JP", formatOptions);
 }
 // const weekend = ['日', '月', '火', '水', '木', '金', '土'];

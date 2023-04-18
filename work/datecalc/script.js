@@ -1,4 +1,3 @@
-const weekend = ['日', '月', '火', '水', '木', '金', '土'];
 const now = new Date();
 document.querySelector("#now").textContent = dateFormat(now);
 
@@ -18,15 +17,26 @@ if (diffDate(now, toYearEnd) == 0) {
     document.querySelector("#yearend").textContent = diffDate(now, toYearEnd) + '日 : ' + diffTime.hour + '時間 : ' + diffTime.minute + '分';
 }
 
-// 日付フォーマット YYYY/MM/DD(a)HH:MI
-function dateFormat(date) {
-    return date.getFullYear() + '/'
-        + String(date.getMonth() + 1).padStart(2, '0') + '/'
-        + String(date.getDate()).padStart(2, '0') + '('
-        + weekend[date.getDay()] + ')'
-        + String(date.getHours()).padStart(2, '0') + ':'
-        + String(date.getMinutes()).padStart(2, '0');
+// 日付フォーマット YYYY/MM/DD(a)HH:MI:SS
+const formatOptions = {
+    year: "numeric", month: "2-digit", day: "2-digit", weekday: 'short', hour: "2-digit", minute: "2-digit", second: "2-digit"
 }
+function dateFormat(date) {
+    return date.toLocaleString("ja-JP", formatOptions);
+}
+// const weekend = ['日', '月', '火', '水', '木', '金', '土'];
+// function dateFormat(date) {
+//     return date.toLocaleString("sv-SE").replace(' ', `(${weekend[date.getDay()]})`);
+// }
+// const weekend = ['日', '月', '火', '水', '木', '金', '土'];
+// function dateFormat(date) {
+//     return date.getFullYear() + '/'
+//         + String(date.getMonth() + 1).padStart(2, '0') + '/'
+//         + String(date.getDate()).padStart(2, '0') + '('
+//         + weekend[date.getDay()] + ')'
+//         + String(date.getHours()).padStart(2, '0') + ':'
+//         + String(date.getMinutes()).padStart(2, '0');
+// }
 
 // 日時の日数差
 function diffDate(from, to) {

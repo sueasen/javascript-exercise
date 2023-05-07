@@ -1,19 +1,19 @@
 const rgbTarget = [...Array(3)].map(i => Math.floor(Math.random() * 256));
-document.querySelector('#main').style.backgroundColor = 'rgb(' + rgbTarget.join(',') + ')';
+document.querySelector('#main').style.backgroundColor = rgbColor(rgbTarget);
 
 const colors = [...Array(9 * 10 - 1)].map((_, j) => {
     if (j % 6 == 0) {
-        return [rgbTarget[0], Math.floor(Math.random() * 256), Math.floor(Math.random() * 256)];
+        return [rgbTarget[0], rgbNum(), rgbNum()];
     } else if (j % 6 == 1) {
-        return [Math.floor(Math.random() * 256), rgbTarget[1], Math.floor(Math.random() * 256)];
+        return [rgbNum(), rgbTarget[1], rgbNum()];
     } else if (j % 6 == 2) {
-        return [Math.floor(Math.random() * 256), Math.floor(Math.random() * 256), rgbTarget[2]];
+        return [rgbNum(), rgbNum(), rgbTarget[2]];
     } else if (j % 6 == 3) {
-        return [rgbTarget[0], rgbTarget[1], Math.floor(Math.random() * 256)];
+        return [rgbTarget[0], rgbTarget[1], rgbNum()];
     } else if (j % 6 == 4) {
-        return [rgbTarget[0], Math.floor(Math.random() * 256), rgbTarget[2]];
+        return [rgbTarget[0], rgbNum(), rgbTarget[2]];
     } else if (j % 6 == 5) {
-        return [Math.floor(Math.random() * 256), rgbTarget[1], rgbTarget[2]];
+        return [rgbNum(), rgbTarget[1], rgbTarget[2]];
     }
 });
 colors.push(rgbTarget);
@@ -27,41 +27,31 @@ while (colors.length) {
         document.querySelector('.select').append(select);
     }
     let i = Math.floor(Math.random() * colors.length);
-    let b = colors.splice(i, 1);
+    let color = colors.splice(i, 1);
 
     const box = document.createElement('div');
     box.classList.add('box');
-    box.style.backgroundColor = 'rgb(' + b.join(',') + ')';
+    box.style.backgroundColor = rgbColor(color);
     select.append(box);
-    box.addEventListener('click', () => {
-        isColor(box);
-    });
+    box.addEventListener('click', () => isColor(box));
 }
 
-document.querySelector('#red').addEventListener('click', hintRed);
-document.querySelector('#green').addEventListener('click', hintGreen);
-document.querySelector('#blue').addEventListener('click', hintBlue);
+document.querySelector('#red').addEventListener('click', () => hint(0));
+document.querySelector('#green').addEventListener('click', () => hint(1));
+document.querySelector('#blue').addEventListener('click', () => hint(2));
 
-function hintRed() {
-    document.querySelectorAll('.box').forEach(v => {
-        let c = v.style.backgroundColor.match(/\d+/g);
-        if (c[0] != rgbTarget[0]) {
-            v.style.opacity = 0;
-        }
-    });
+function rgbNum() {
+    return Math.floor(Math.random() * 256);
 }
-function hintGreen() {
-    document.querySelectorAll('.box').forEach(v => {
-        let c = v.style.backgroundColor.match(/\d+/g);
-        if (c[1] != rgbTarget[1]) {
-            v.style.opacity = 0;
-        }
-    });
+
+function rgbColor(args) {
+    return 'rgb(' + args.join(',') + ')';
 }
-function hintBlue() {
+
+function hint(i) {
     document.querySelectorAll('.box').forEach(v => {
         let c = v.style.backgroundColor.match(/\d+/g);
-        if (c[2] != rgbTarget[2]) {
+        if (c[i] != rgbTarget[i]) {
             v.style.opacity = 0;
         }
     });

@@ -17,11 +17,11 @@ window.addEventListener('load', (e) => {
 	slideDatas.top.src = slideDatas.now.src;
 	
 	slideDatas.list.forEach((dom, i) => {
-		fetch("https://aws.random.cat/meow")
+		fetch("https://dog.ceo/api/breeds/image/random")
 			.then(response => response.json())
 			.then(json => {
 				console.log(json);
-				dom.src = json.file;
+				dom.src = json.message;
 				dom.onload = () => removeLoading(slideDatas);
 			})
 			.catch((error) => console.log(error));

@@ -16,7 +16,7 @@ window.addEventListener('load', async (e) => {
 	slideDatas.top.src = slideDatas.now.src;
 
 	const results = slideDatas.list.map(d => {
-		return fetch("https://aws.random.cat/meow")
+		return fetch("https://dog.ceo/api/breeds/image/random")
 			.then(response => response.json())
 			.then(json => new Promise((resolve, reject) => resolve({ 'json': json, 'dom': d })))
 			.catch(error => console.log(error));
@@ -24,7 +24,7 @@ window.addEventListener('load', async (e) => {
 
 	(await Promise.all(results)).forEach(result => {
 		console.log(result.json);
-		result.dom.src = result.json.file;
+		result.dom.src = result.json.message;
 		result.dom.onload = () => removeLoading(slideDatas);
 	});
 });

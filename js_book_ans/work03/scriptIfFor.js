@@ -215,3 +215,84 @@ function onClickBtn25(element) {
         date = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
     }
 }
+
+/**
+ * onClickBtn25 の処理に加えて偶数の時にフォントサイズと同じ値の角度を変えながら表示
+ * 
+ * - DOMの角度を変える方法
+ * dom.style.transform = 'rotate(45deg)' // 45度傾く
+ */
+function onClickBtnXX1(element) {
+    let input1 = document.getElementById('input1').value;
+    const DAY_FORMAT = new RegExp('^\\d{4}\/(\\d{1}|1[0-2]|0[1-9])\/(\\d{1}|0[1-9]|[1-2]\\d{1}|3[0-1])$');
+    if (!DAY_FORMAT.test(input1)) {
+        alert('yyyy/mm/dd で入力してください　入力：' + input1);
+        return;
+    }
+
+    let dateArray = input1.split('/');
+    let date = new Date(dateArray[0], dateArray[1] - 1, dateArray[2]);
+    let toDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 50);
+    let fontSize = 10;
+    while (date <= toDate) {
+        let dom = createDivElement(date.toLocaleDateString());
+        document.getElementById('work1').append(dom);
+        dom.style.fontSize = fontSize++ + 'px';
+        dom.style.backgroundColor = '#6'.padEnd(7, date.getDate());
+        if (fontSize % 2 === 0) {
+            dom.style.transform = 'rotate(' + fontSize * 7 + 'deg)';
+        }
+        date = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
+    }
+}
+
+/**
+ * onClickBtn25 の処理に加えて偶数の時に角度に対してアニメーションを設定
+ * 
+ * - DOMにアニメーションを設定する方法
+ * dom.animate(キーフレーム, タイミングプロパティ)
+ * （例）
+ * dom.animate(
+ *     // 変化させるスタイルを指定(キーフレーム)  スタイル名: [値1, 値2...]  #値1～2～...と徐々に変化
+ *     {
+ *         transform: ['rotate(0deg)', 'rotate(360deg)']  // 1回転する(0度～360度に変化)
+ *     }
+ *     // 変化の仕方を指定(タイミングプロパティ)　タイミング名: 値
+ *     , {
+ *         duration: 5000           // 変化の間隔（ms）
+ *         iterations: Infinity     // 繰り返し回数, Infinityは無限
+ *     }
+ * )
+ */
+function onClickBtnXX2(element) {
+    let input1 = document.getElementById('input1').value;
+    const DAY_FORMAT = new RegExp('^\\d{4}\/(\\d{1}|1[0-2]|0[1-9])\/(\\d{1}|0[1-9]|[1-2]\\d{1}|3[0-1])$');
+    if (!DAY_FORMAT.test(input1)) {
+        alert('yyyy/mm/dd で入力してください　入力：' + input1);
+        return;
+    }
+
+    let dateArray = input1.split('/');
+    let date = new Date(dateArray[0], dateArray[1] - 1, dateArray[2]);
+    let toDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 50);
+    let fontSize = 10;
+    while (date <= toDate) {
+        let dom = createDivElement(date.toLocaleDateString());
+        document.getElementById('work1').append(dom);
+        dom.style.fontSize = fontSize++ + 'px';
+        dom.style.backgroundColor = '#6'.padEnd(7, date.getDate());
+        if (fontSize % 2 === 0) {
+            dom.style.transform = 'rotate(' + fontSize * 7 + 'deg)';
+            dom.animate(
+                {
+                    transform: ['rotate(0deg)', 'rotate(' + fontSize * 7 + 'deg)', 'rotate(360deg)']
+                }
+                , {
+                    duration: 5000,
+                    iterations: Infinity
+                }
+            );
+        }
+        date = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
+    }
+}

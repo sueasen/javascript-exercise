@@ -17,7 +17,7 @@ function selectHand(hand) {
 
     if (pcHand == hand) {
         document.getElementById('result').innerText = 'あいこ'
-    } else if (pcHand == janken[(janken.length + janken.indexOf(hand) + 1) % janken.length]) {
+    } else if (pcHand == janken[(janken.indexOf(hand) + 1) % janken.length]) {
         document.getElementById('result').innerText = 'かち'
     } else {
         document.getElementById('result').innerText = 'まけ'

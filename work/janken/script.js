@@ -1,10 +1,5 @@
 'use strict';
 
-// const janken = {
-//     'j_go': 'j_ch'
-//     , 'j_ch': 'j_pa'
-//     , 'j_pa': 'j_go'
-// }
 const janken = ['j_go', 'j_ch', 'j_pa'];
 
 const result = document.getElementById('result');

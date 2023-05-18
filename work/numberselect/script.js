@@ -1,8 +1,5 @@
 const boxCount = 90;
-const numbers = {
-    target: null
-    , list: null
-};
+let target = -1;
 
 let count = 0;
 let select = null;
@@ -21,16 +18,16 @@ setNumbers();
 document.querySelector('#main').addEventListener('click', setNumbers)
 
 function setNumbers() {
-    numbers.target = Math.floor(Math.random() * boxCount);
-    numbers.list = [...Array(boxCount).keys()];
+    target = Math.floor(Math.random() * boxCount);
+    let list = [...Array(boxCount).keys()];
     document.querySelectorAll('.select .box').forEach(v => {
-        let i = Math.floor(Math.random() * numbers.list.length);
-        let num = numbers.list.splice(i, 1);
+        let i = Math.floor(Math.random() * list.length);
+        let num = list.splice(i, 1);
         v.innerText = num;
         v.style.opacity = 1;
     });
-    document.querySelector('#odd').addEventListener('click', () => addEventHint((t) => t % 2 != numbers.target % 2));
-    document.querySelector('#herf').addEventListener('click', () => addEventHint((t) => parseInt(t / (boxCount / 2)) != parseInt(numbers.target / (boxCount / 2))));
+    document.querySelector('#odd').addEventListener('click', () => addEventHint((t) => t % 2 != target % 2));
+    document.querySelector('#herf').addEventListener('click', () => addEventHint((t) => parseInt(t / (boxCount / 2)) != parseInt(target / (boxCount / 2))));
     document.querySelector('#main').innerText = '？？？';
 }
 
@@ -43,9 +40,9 @@ function addEventHint(isIgnore) {
 }
 
 function isNumber(box) {
-    if (box.innerText == numbers.target) {
+    if (box.innerText == target) {
         document.querySelector('#main').innerText = '正解！！またやる？';
-    } else if (box.innerText > numbers.target) {
+    } else if (box.innerText > target) {
         document.querySelector('#main').innerText = `？ ${box.innerText}より小さいよ ？`;
     } else {
         document.querySelector('#main').innerText = `？ ${box.innerText}より大きいよ ？`;

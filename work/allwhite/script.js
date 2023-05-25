@@ -1,26 +1,34 @@
-const boxs = ['box-white', 'box-black'];
+const boxColorClass = ['box-white', 'box-black'];
+newQuestion();
+document.querySelectorAll('.box').forEach(b => b.addEventListener('click', () => changeBox(b)));
 
-newque();
-
-function newque() {
+/**
+ * 新規問題の設定します
+ */
+function newQuestion() {
     document.getElementById('result').innerText = 'できるかな．．．'
     document.querySelectorAll('.box').forEach(b => {
-        b.classList.remove(...boxs);
-        b.classList.add(boxs[parseInt(Math.random() * 2)]);
+        b.classList.remove(...boxColorClass);
+        b.classList.add(boxColorClass[parseInt(Math.random() * 2)]);
     });
 }
 
-document.querySelectorAll('.box').forEach(b => {
-    b.addEventListener('click', () => {
-        boxs.forEach(v => b.classList.toggle(v));
-        boxs.forEach(v => document.getElementById(`${Number(b.id[0]) - 1}${b.id[1]}`)?.classList.toggle(v));
-        boxs.forEach(v => document.getElementById(`${Number(b.id[0]) + 1}${b.id[1]}`)?.classList.toggle(v));
-        boxs.forEach(v => document.getElementById(`${b.id[0]}${Number(b.id[1]) - 1}`)?.classList.toggle(v));
-        boxs.forEach(v => document.getElementById(`${b.id[0]}${Number(b.id[1]) + 1}`)?.classList.toggle(v));
-        if (![...document.querySelectorAll('.box')].map(b => b.classList).reduce((acl, cl) => [...acl, ...cl]).includes(boxs[1])) {
-            document.getElementById('result').innerText = '全部、白！クリア！！！！！'
-        } else {
-            document.getElementById('result').innerText = 'できるかな．．．'
-        }
-    })
-});
+/**
+ * box と隣接する box を変更します
+ * 変更後に全ての box が白になってるかを確認します
+ * 
+ * @param {HTMLElement} box 変更する中心のbox
+ */
+function changeBox(box) {
+    boxColorClass.forEach(v => box.classList.toggle(v));
+    boxColorClass.forEach(v => document.getElementById(`${Number(box.id[0]) - 1}${box.id[1]}`)?.classList.toggle(v));
+    boxColorClass.forEach(v => document.getElementById(`${Number(box.id[0]) + 1}${box.id[1]}`)?.classList.toggle(v));
+    boxColorClass.forEach(v => document.getElementById(`${box.id[0]}${Number(box.id[1]) - 1}`)?.classList.toggle(v));
+    boxColorClass.forEach(v => document.getElementById(`${box.id[0]}${Number(box.id[1]) + 1}`)?.classList.toggle(v));
+
+    if ([...document.querySelectorAll('.box')].map(b => b.classList.contains(boxColorClass[0])).every(v => v)) {
+        document.getElementById('result').innerText = '全部、白！クリア！！！！！'
+    } else {
+        document.getElementById('result').innerText = 'できるかな．．．'
+    }
+}

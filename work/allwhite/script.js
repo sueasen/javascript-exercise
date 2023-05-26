@@ -20,11 +20,14 @@ function newQuestion() {
  * @param {HTMLElement} box 変更する中心のbox
  */
 function changeBox(box) {
-    boxColorClass.forEach(v => box.classList.toggle(v));
-    boxColorClass.forEach(v => document.getElementById(`${Number(box.id[0]) - 1}${box.id[1]}`)?.classList.toggle(v));
-    boxColorClass.forEach(v => document.getElementById(`${Number(box.id[0]) + 1}${box.id[1]}`)?.classList.toggle(v));
-    boxColorClass.forEach(v => document.getElementById(`${box.id[0]}${Number(box.id[1]) - 1}`)?.classList.toggle(v));
-    boxColorClass.forEach(v => document.getElementById(`${box.id[0]}${Number(box.id[1]) + 1}`)?.classList.toggle(v));
+    let boxIds = [
+        box.id
+        , `${Number(box.id[0]) - 1}${box.id[1]}`
+        , `${Number(box.id[0]) + 1}${box.id[1]}`
+        , `${box.id[0]}${Number(box.id[1]) - 1}`
+        , `${box.id[0]}${Number(box.id[1]) + 1}`
+    ];
+    boxIds.forEach(id => boxColorClass.forEach(v => document.getElementById(id)?.classList.toggle(v)));
 
     if ([...document.querySelectorAll('.box')].map(b => b.classList.contains(boxColorClass[0])).every(v => v)) {
         document.getElementById('result').innerText = '全部、白！クリア！！！！！'

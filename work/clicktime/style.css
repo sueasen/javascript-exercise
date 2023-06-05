@@ -24,7 +24,19 @@ body {
 #clickspace {
   position: relative;
   width: 800px;
-  height: 800px;
+  height: 400px;
+}
+
+@media (600px < width < 800px) {
+  #clickspace {
+    width: 600px;
+  }
+}
+
+@media (width <=600px) {
+  #clickspace {
+    width: 400px;
+  }
 }
 
 #target {

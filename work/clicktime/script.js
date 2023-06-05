@@ -4,6 +4,7 @@ let time;
 let intervalId;
 let animate;
 let isGameStart = false;
+let durations = { 'easy': 3000, 'normal': 2000, 'hard': 1000 }
 
 document.querySelector('h3').innerText = `${count}回クリックがんばろ`;
 
@@ -15,6 +16,10 @@ document.querySelector('#target').addEventListener('click', () => {
     } else {
         moveTarget();
     }
+});
+
+document.querySelectorAll(`input[type='radio'][name='hint']`).forEach(r => {
+    r.addEventListener('change', () => { duration = durations[r.value] })
 });
 
 function startGame() {
@@ -57,11 +62,11 @@ function moveTarget() {
 
     animate = document.querySelector('#target').animate(
         {
-            left: [...Array(2)].map(() => `${Math.floor(Math.random() * maxX)}px`)
-            , top: [...Array(2)].map(() => `${Math.floor(Math.random() * maxY)}px`)
+            left: [`${Math.floor(Math.random() * maxX)}px`, `${Math.floor(Math.random() * maxX)}px`]
+            , top: [`${Math.floor(Math.random() * maxY)}px`, `${Math.floor(Math.random() * maxY)}px`]
         }
         , {
-            duration: 3000
+            duration: durations[[...document.querySelectorAll("input[type='radio'][name='hint']")].filter(r => r.checked)[0].value]
             , iterations: Infinity
         }
     );

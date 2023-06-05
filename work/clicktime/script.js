@@ -1,13 +1,16 @@
-let count = 10;
+let count = 5;
 let score;
 let time;
 let intervalId;
 let animate;
+let isGameStart = false;
 
 document.querySelector('h3').innerText = `${count}回クリックがんばろ`;
 
 document.querySelector('#target').addEventListener('click', () => {
-    if (incrementScore() >= count) {
+    if (!isGameStart) {
+        return;
+    } else if (incrementScore() >= count) {
         endGame();
     } else {
         moveTarget();
@@ -20,6 +23,7 @@ function startGame() {
     document.querySelector('#target').classList.remove('end');
     score = 0;
     time = new Date();
+    isGameStart = true;
     document.querySelector('#target').style.display = 'block';
     moveTarget();
     intervalId = setInterval(() => {
@@ -29,6 +33,7 @@ function startGame() {
 
 function endGame() {
     clearInterval(intervalId);
+    isGameStart = false;
     animate.pause();
     document.querySelector('#result').innerText = `お疲れ！時間は...${progressTime()} 秒`;
     document.querySelector('#target').textContent = `終了！`;

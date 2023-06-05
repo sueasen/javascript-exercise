@@ -26,6 +26,7 @@ function startGame() {
     isGameStart = true;
     document.querySelector('#target').style.display = 'block';
     moveTarget();
+    clearInterval(intervalId);
     intervalId = setInterval(() => {
         document.querySelector('#result').innerText = `${progressTime()} 秒経過．．．`;
     }, 50);

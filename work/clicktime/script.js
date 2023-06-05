@@ -57,8 +57,8 @@ function moveTarget() {
 
     animate = document.querySelector('#target').animate(
         {
-            left: [`${Math.floor(Math.random() * maxX)}px`, `${Math.floor(Math.random() * maxX)}px`]
-            , top: [`${Math.floor(Math.random() * maxY)}px`, `${Math.floor(Math.random() * maxY)}px`]
+            left: [...Array(2)].map(() => `${Math.floor(Math.random() * maxX)}px`)
+            , top: [...Array(2)].map(() => `${Math.floor(Math.random() * maxY)}px`)
         }
         , {
             duration: 3000

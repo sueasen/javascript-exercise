@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+body {
+  text-align: center;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.filearea {
+  margin: 0 auto;
+  padding-top: 15px;
+  width: 400px;
+  border: 5px dashed lightgray;
+}
+
+.selecter {
+  background-color: lightgray;
+  border-radius: 30px;
+  padding: 20px;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.select-file {
+  padding: 0 10px;
+}
+
+.preview {
+  margin: 20px;
+  height: 130px;
+}
+
+/* .preview.pre-select {
+  border: 5px dashed lightgray;
+} */
+
+#drop_zone {
+  border: 5px solid blue;
+  width: 200px;
+  height: 100px;
+}

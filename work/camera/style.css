@@ -1,0 +1,34 @@
+@charset "utf-8";
+
+body {
+  text-align: center;
+}
+
+.flex-row {
+  display: flex;
+  justify-content: center;
+}
+
+#video {
+  border: 1px solid black;
+  width: 320px;
+  height: 240px;
+}
+
+#photo {
+  border: 1px solid black;
+  width: 320px;
+  height: 240px;
+}
+
+#shoot {
+  width: 100px;
+  margin: 0 auto;
+  border: solid 1px skyblue;
+  border-radius: 30px;
+  background-color: skyblue;
+}
+
+#shoot:hover {
+  opacity: 0.7;
+}

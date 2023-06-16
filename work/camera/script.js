@@ -9,8 +9,7 @@ document.querySelector('#shoot').addEventListener('click', photoShoot);
  * ビデオのカメラ設定(デバイスのカメラ映像をビデオに描画)
  */
 function initVideoCamera() {
-    navigator.mediaDevices
-        .getUserMedia({ video: true, audio: false })
+    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
         .then((stream) => {
             video.srcObject = stream;
             video.play();

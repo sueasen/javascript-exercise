@@ -34,9 +34,22 @@ function initPhoto() {
  * 写真の撮影描画
  */
 function photoShoot() {
-    canvas.width = video.clientWidth;
-    canvas.height = video.clientHeight;
+    let drawSize = calcDrawSize();
+    canvas.width = drawSize.width;
+    canvas.height = drawSize.height;
     const context = canvas.getContext("2d");
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
     document.querySelector("#photo").src = canvas.toDataURL("image/png");
+}
+
+/**
+ * 描画サイズの計算
+ * 縦横比の撮影(video)が大きい時は撮影の縦基準、それ以外は撮影の横基準で計算
+ */
+function calcDrawSize() {
+    let videoRatio = video.videoHeight / video.videoWidth;
+    let viewRatio = video.clientHeight / video.clientWidth;
+    return videoRatio > viewRatio ?
+        { height: video.clientHeight, width: video.clientHeight / videoRatio }
+        : { height: video.clientWidth * videoRatio, width: video.clientWidth }
 }

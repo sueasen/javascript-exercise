@@ -12,9 +12,18 @@
     <div class="flex-row">
         <div class="camera">
             <video id="video"></video>
-            <div id="shoot">撮影</div>
+            <div id="shoot">写真撮影</div>
+            <div id="recode-start">録画開始</div>
+            <div id="recode-stop" class="hidd">録画停止</div>
         </div>
-        <img id="photo">
+        <div class="photo">
+            <img id="photo">
+            <p>写真</p>
+        </div>
+        <div class="movie">
+            <video id="movie" controls playsinline></video>
+            <p>動画</p>
+        </div>
     </div>
 </body>
 

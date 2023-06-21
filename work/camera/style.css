@@ -27,7 +27,6 @@ body {
   height: 240px;
 }
 
-
 #shoot,
 #recode-start,
 #recode-stop {
@@ -52,6 +51,10 @@ body {
   animation: recodding 2s infinite;
 }
 
+p.ret-element {
+  margin-top: 0;
+}
+
 @keyframes recodding {
   0% {
     opacity: 1;
@@ -65,5 +68,11 @@ body {
 
   100% {
     opacity: 1;
+  }
+}
+
+@media (width <=1000px) {
+  .flex-row {
+    display: block;
   }
 }

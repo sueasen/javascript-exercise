@@ -1,12 +1,12 @@
 @charset "utf-8";
 
 :root {
-  --scale: 50px;
+  --scale: 40px;
 }
 
 body {
   text-align: center;
-  line-height: 50px;
+  line-height: calc(var(--scale));
 }
 
 .flex_center {
@@ -22,7 +22,7 @@ body {
 }
 
 #hint #odd {
-  width: calc(3 * var(--scale));
+  width: calc(4 * var(--scale));
   height: calc(var(--scale));
   background-color: skyblue;
   border: solid 1px skyblue;
@@ -30,7 +30,7 @@ body {
 }
 
 #hint #herf {
-  width: calc(3 * var(--scale));
+  width: calc(4 * var(--scale));
   height: calc(var(--scale));
   background-color: skyblue;
   border: solid 1px skyblue;

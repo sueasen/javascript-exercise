@@ -32,8 +32,8 @@ input[type="file"] {
 }
 
 .preview {
-  margin: 20px;
-  height: 130px;
+  margin: 10px;
+  width: 90%;
 }
 
 /* .preview.pre-select {

@@ -1,12 +1,12 @@
 const qs = {
-    r3m6: [
+    r03m06: [
         ''
         , 'https://www.fe-siken.com/kakomon/26_haru/q1.html'
         , 'https://www.fe-siken.com/kakomon/01_aki/q4.html'
         , 'https://www.fe-siken.com/kakomon/19_haru/q6.html'
         , 'https://www.fe-siken.com/kakomon/26_haru/q4.html'
     ]
-    , r3m7: [
+    , r03m07: [
         ''
         , 'https://www.fe-siken.com/kakomon/18_aki/q8.html'
         , 'https://www.fe-siken.com/kakomon/19_aki/q9.html'
@@ -23,16 +23,23 @@ const next = document.querySelector('#next');
 
 selectYM.addEventListener('change', (e) => {
     selectQ.value = 1;
-    iframe.src = qs[selectYM.value][selectQ.value];
+    applyIFrame(qs[selectYM.value][selectQ.value]);
 });
 selectQ.addEventListener('change', (e) => {
-    iframe.src = qs[selectYM.value][selectQ.value];
+    applyIFrame(qs[selectYM.value][selectQ.value]);
 });
 prev.addEventListener('click', (e) => {
-    selectQ.value = selectQ.value <= 1 ? 1 : Number(selectQ.value) - 1;
-    iframe.src = qs[selectYM.value][selectQ.value];
+    if (selectQ.value <= 1) return;
+    selectQ.value = Number(selectQ.value) - 1;
+    applyIFrame(qs[selectYM.value][selectQ.value]);
 });
 next.addEventListener('click', (e) => {
-    selectQ.value = selectQ.value >= 80 ? 80 : Number(selectQ.value) + 1;
-    iframe.src = qs[selectYM.value][selectQ.value];
+    if (selectQ.value >= qs[selectYM.value].length - 1) return;
+    selectQ.value = Number(selectQ.value) + 1;
+    applyIFrame(qs[selectYM.value][selectQ.value]);
 });
+
+function applyIFrame(url) {
+    if (iframe.src == url) return;
+    iframe.src = url;
+}

@@ -339,6 +339,14 @@ const selectQ = document.querySelector('#selectQ');
 const prev = document.querySelector('#prev');
 const next = document.querySelector('#next');
 
+Object.keys(qs).forEach(k => {
+    const option = document.createElement('option');
+    option.value = k;
+    option.innerText = `${k.slice(0, 3).toUpperCase()}-${k.slice(4, 6)}月`;
+    selectYM.append(option);
+});
+applyIFrame(qs[selectYM.value][selectQ.value]);
+
 selectYM.addEventListener('change', (e) => {
     selectQ.value = 1;
     applyIFrame(qs[selectYM.value][selectQ.value]);

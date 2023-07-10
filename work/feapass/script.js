@@ -511,6 +511,15 @@ Object.keys(qs).forEach(k => {
     option.innerText = `${k.slice(0, 3).toUpperCase()}-${k.slice(4, 6)}月`;
     selectYM.append(option);
 });
+
+const params = new URL(window.location.href).searchParams;
+if (params.get('selectYM') && Object.keys(qs).includes(params.get('selectYM'))) {
+    selectYM.value = params.get('selectYM');
+}
+if (params.get('selectQ') && (params.get('selectQ') <= qs[selectYM.value].length)) {
+    selectQ.value = params.get('selectQ');
+}
+
 applyIFrame(qs[selectYM.value][selectQ.value]);
 
 selectYM.addEventListener('change', (e) => {

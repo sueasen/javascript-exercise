@@ -820,7 +820,7 @@ const qs = {
         , 'https://www.fe-siken.com/s/kakomon/19_aki/q11.html'
         , 'https://www.ap-siken.com/s/kakomon/30_haru/q7.html'
         , 'https://www.ap-siken.com/s/kakomon/21_haru/q8.html'
-        , 'https://www.ap-siken.com/s/kakomon/25_aki/q9.html'
+        , 'https://www.ap-siken.com/s/kakomon/04_aki/q6.html'
         , 'https://www.fe-siken.com/s/kakomon/23_aki/q8.html'
         , 'https://www.ap-siken.com/s/kakomon/02_moshi/q20.html'
         , 'https://www.fe-siken.com/s/kakomon/13_aki/q33.html'

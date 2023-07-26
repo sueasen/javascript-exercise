@@ -1296,7 +1296,7 @@ next.addEventListener('click', (e) => {
 });
 
 function applyIFrame(url) {
-    if (window.matchMedia('(max-width: 768px)').matches) {
+    if (window.matchMedia('(max-width < 768px)').matches) {
         url = url.replace('/kakomon/', '/s/kakomon/')
     }
     if (iframe.src == url) return;

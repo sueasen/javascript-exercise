@@ -809,6 +809,68 @@ const qs = {
         , 'https://www.fe-siken.com/kakomon/18_haru/q73.html'
         , 'https://www.ap-siken.com/kakomon/25_haru/q78.html'
     ]
+    , r05m07: [
+        , 'https://www.fe-siken.com/kakomon/02_menjo/q2.html'
+        , 'https://www.fe-siken.com/kakomon/14_haru/q11.html'
+        , 'https://www.fe-siken.com/kakomon/26_aki/q4.html'
+        , 'https://www.ap-siken.com/kakomon/01_aki/q3.html'
+        , 'https://www.fe-siken.com/kakomon/26_haru/q7.html'
+        , 'https://www.ap-siken.com/kakomon/21_haru/q5.html'
+        , 'https://www.fe-siken.com/kakomon/29_aki/q7.html'
+        , 'https://www.fe-siken.com/kakomon/21_haru/q11.html'
+        , 'https://www.fe-siken.com/kakomon/29_haru/q10.html'
+        , 'https://www.fe-siken.com/kakomon/20_haru/q21.html'
+        , 'https://www.fe-siken.com/kakomon/30_haru/q15.html'
+        , 'https://www.fe-siken.com/kakomon/30_aki/q15.html'
+        , 'https://www.fe-siken.com/kakomon/16_haru/q30.html'
+        , 'https://www.fe-siken.com/kakomon/30_haru/q18.html'
+        , 'https://www.fe-siken.com/kakomon/16_haru/q35.html'
+        , 'https://www.fe-siken.com/kakomon/20_aki/q16.html'
+        , 'https://www.fe-siken.com/kakomon/29_aki/q25.html'
+        , 'https://www.fe-siken.com/kakomon/22_haru/q33.html'
+        , 'https://www.fe-siken.com/kakomon/14_haru/q67.html'
+        , 'https://www.fe-siken.com/kakomon/17_haru/q60.html'
+        , 'https://www.db-siken.com/kakomon/22_haru/am2_11.html'
+        , 'https://www.fe-siken.com/kakomon/23_toku/q34.html'
+        , 'https://www.ap-siken.com/kakomon/25_aki/q32.html'
+        , 'https://www.fe-siken.com/kakomon/22_aki/q36.html'
+        , 'https://www.fe-siken.com/kakomon/21_aki/q39.html'
+        , 'https://www.fe-siken.com/kakomon/22_haru/q39.html'
+        , 'https://www.sg-siken.com/kakomon/01_aki/q10.html'
+        , 'https://www.fe-siken.com/kakomon/01_aki/q40.html'
+        , 'https://www.fe-siken.com/kakomon/30_aki/q36.html'
+        , 'https://www.ap-siken.com/kakomon/29_aki/q42.html'
+        , 'https://www.sg-siken.com/kakomon/28_haru/q2.html'
+        , 'https://www.sc-siken.com/kakomon/26_aki/am2_9.html'
+        , 'https://www.fe-siken.com/kakomon/30_haru/q42.html'
+        , 'https://www.ap-siken.com/kakomon/21_haru/q57.html'
+        , 'https://www.fe-siken.com/kakomon/20_aki/q41.html'
+        , 'https://www.fe-siken.com/kakomon/22_haru/q52.html'
+        , 'https://www.fe-siken.com/kakomon/15_haru/q53.html'
+        , 'https://www.ap-siken.com/kakomon/22_aki/q48.html'
+        , 'https://www.ap-siken.com/kakomon/03_aki/q50.html'
+        , 'https://www.ap-siken.com/kakomon/26_aki/q49.html'
+        , 'https://www.ap-siken.com/kakomon/25_haru/q53.html'
+        , 'https://www.ap-siken.com/kakomon/24_aki/q53.html'
+        , 'https://www.ap-siken.com/kakomon/25_aki/q57.html'
+        , 'https://www.sc-siken.com/kakomon/26_haru/am2_24.html'
+        , 'https://www.ap-siken.com/kakomon/27_haru/q60.html'
+        , 'https://www.ap-siken.com/kakomon/26_aki/q61.html'
+        , 'https://www.fe-siken.com/kakomon/01_aki/q63.html'
+        , 'https://www.fe-siken.com/kakomon/26_aki/q67.html'
+        , 'https://www.fe-siken.com/kakomon/29_haru/q68.html'
+        , 'https://www.ap-siken.com/kakomon/23_aki/q67.html'
+        , 'https://www.fe-siken.com/kakomon/27_aki/q70.html'
+        , 'https://www.fe-siken.com/kakomon/30_aki/q70.html'
+        , 'https://www.fe-siken.com/kakomon/30_aki/q71.html'
+        , 'https://www.fe-siken.com/kakomon/01_aki/q71.html'
+        , 'https://www.ap-siken.com/kakomon/28_aki/q72.html'
+        , 'https://www.fe-siken.com/kakomon/26_aki/q75.html'
+        , 'https://www.fe-siken.com/kakomon/24_aki/q76.html'
+        , 'https://www.fe-siken.com/kakomon/18_haru/q78.html'
+        , 'https://www.fe-siken.com/kakomon/23_aki/q78.html'
+        , 'https://www.ap-siken.com/kakomon/31_haru/q80.html'
+    ]
     , org202307_01: [
         ''
         , 'https://www.fe-siken.com/kakomon/16_aki/q1.html'
@@ -1234,6 +1296,9 @@ next.addEventListener('click', (e) => {
 });
 
 function applyIFrame(url) {
+    if (window.matchMedia('(max-width: 768px)').matches) {
+        url = url.replace('/kakomon/', '/s/kakomon/')
+    }
     if (iframe.src == url) return;
     iframe.src = url;
 }

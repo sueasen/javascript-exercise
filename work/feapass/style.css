@@ -36,7 +36,7 @@ nav {
   transform-origin: top left;
 }
 
-@media (width < 768px) {
+/* @media (width < 768px) {
   nav {
     position: fixed;
     top: 0;
@@ -48,4 +48,4 @@ nav {
     width: 160%;
     transform: scale(0.75);
   }
-}
+} */

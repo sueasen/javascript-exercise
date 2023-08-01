@@ -261,7 +261,7 @@ const qs = {
         , 'https://www.fe-siken.com/kakomon/03_menjo/q10.html'
         , 'https://www.fe-siken.com/kakomon/24_aki/q8.html'
         , 'https://www.fe-siken.com/kakomon/26_aki/q9.html'
-        , 'https://www.fe-siken.com/kakomon/18_aki/q18.html'
+        , 'https://www.ap-siken.com/kakomon/29_aki/q8.html'
         , 'https://www.fe-siken.com/kakomon/01_aki/q15.html'
         , 'https://www.fe-siken.com/kakomon/14_haru/q29.html'
         , 'https://www.fe-siken.com/kakomon/25_haru/q15.html'

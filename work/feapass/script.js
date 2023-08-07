@@ -22,7 +22,7 @@ const qs = {
         , 'https://www.fe-siken.com/kakomon/31_haru/q19.html'
         , 'https://www.ap-siken.com/kakomon/31_haru/q20.html'
         , 'https://www.fe-siken.com/kakomon/29_haru/q21.html'
-        , 'https://www.fe-siken.com/kakomon/23_haru/q24.html'
+        , 'https://www.fe-siken.com/kakomon/23_toku/q24.html'
         , 'https://www.fe-siken.com/kakomon/21_haru/q26.html'
         , 'https://www.ap-siken.com/kakomon/24_haru/q25.html'
         , 'https://www.fe-siken.com/kakomon/27_haru/q26.html'

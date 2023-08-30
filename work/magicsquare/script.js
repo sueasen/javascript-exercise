@@ -99,7 +99,7 @@ function sum() {
     let valuse = boxs.map((bs) => bs.map(b => Number(b.innerText)).reduce((s, v) => s += v));
     document.querySelectorAll(`.anser[id^="ans"]`).forEach((element, i) => element.innerText = valuse[i]);
 
-    if (valuse.every((v) => v === valuse[0] && valuse[0] !== "0")) {
+    if (valuse.every((v) => v === valuse[0] && valuse[0] !== 0)) {
         document.querySelectorAll('.box').forEach(element => element.classList.add('allmatch'));
     }
 }

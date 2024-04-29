@@ -4,7 +4,7 @@ let time;
 let intervalId;
 let animate;
 let isGameStart = false;
-let durations = { 'easy': 3000, 'normal': 2000, 'hard': 1000 }
+let durations = { 'easy': 3000, 'normal': 2000, 'hard': 500 }
 
 document.querySelector('h3').innerText = `${count}回クリックがんばろ`;
 

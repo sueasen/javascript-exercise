@@ -248,85 +248,85 @@ window.addEventListener('load', (e) => {
  * ・画面全体を回転する方法
  *   body を取得して style の transform に rotate(0deg～360deg) を設定 (0が通常、数字は傾ける確度)
  */
-// window.addEventListener('load', (e) => {
-//     let count = localStorage.getItem('aaa');
-//     if (!count || count >= 10) {
-//         count = 0;
-//     } else {
-//         count++;
-//     }
-//     localStorage.setItem('aaa', count);
-
-//     document.querySelector('body').style.opacity = 1 - (count / 10);
-//     document.querySelector('body').style.transform = `rotate(${36 * count}deg)`;
-// });
-
 window.addEventListener('load', (e) => {
-    // ローカルストレージから保存された値を取得
-    const rotationAngle = localStorage.getItem('rotationAngle');
-    const opacityValue = localStorage.getItem('opacityValue');
-
-    // 画面を透明にする関数
-    function makeTransparent() {
-        let opacity = 1; // 透明度の初期値
-        const timer = setInterval(() => {
-            if (opacity <= 0) {
-                clearInterval(timer); // タイマーを停止
-                document.body.style.opacity = 1; // 透明度を元に戻す
-            } else {
-                opacity -= 0.1; // 透明度を減少させる
-                document.body.style.opacity = opacity; // 透明度を設定
-            }
-        }, 100);
+    let count = localStorage.getItem('aaa');
+    if (!count || count >= 10) {
+        count = 0;
+    } else {
+        count++;
     }
+    localStorage.setItem('aaa', count);
 
-    // 画面を回転する関数
-    function rotateScreen() {
-        let rotation = 0; // 回転角度の初期値
-        const timer = setInterval(() => {
-            if (rotation >= 360) {
-                clearInterval(timer); // タイマーを停止
-                document.body.style.transform = 'rotate(0deg)'; // 回転角度を元に戻す
-            } else {
-                rotation += 10; // 回転角度を増加させる
-                document.body.style.transform = `rotate(${rotation}deg)`; // 回転角度を設定
-            }
-        }, 100);
-    }
-
-    // ロード時に透明度と回転角度を復元
-    if (opacityValue) {
-        document.body.style.opacity = opacityValue;
-    }
-    if (rotationAngle) {
-        document.body.style.transform = `rotate(${rotationAngle}deg)`;
-    }
-
-    // ページが開かれるたびに透明にして回転する
-    makeTransparent();
-    rotateScreen();
-
-    // // 画面が透明になった後、復活させる
-    document.addEventListener('visibilitychange', () => {
-        if (document.visibilityState === 'visible') {
-            makeTransparent();
-            rotateScreen();
-        }
-    });
-
-    // ページを閉じる前に透明度と回転角度を保存
-    window.addEventListener('beforeunload', () => {
-        localStorage.setItem('opacityValue', document.body.style.opacity);
-        localStorage.setItem('rotationAngle', getRotationAngle());
-    });
-
-    // ローカルストレージから保存された回転角度を取得する関数
-    function getRotationAngle() {
-        const transformStyle = document.body.style.transform;
-        const match = transformStyle.match(/rotate\((\d+)deg\)/);
-        if (match && match[1]) {
-            return match[1];
-        }
-        return null;
-    }
+    document.querySelector('body').style.opacity = 1 - (count / 10);
+    document.querySelector('body').style.transform = `rotate(${36 * count}deg)`;
 });
+
+// window.addEventListener('load', (e) => {
+//     // ローカルストレージから保存された値を取得
+//     const rotationAngle = localStorage.getItem('rotationAngle');
+//     const opacityValue = localStorage.getItem('opacityValue');
+
+//     // 画面を透明にする関数
+//     function makeTransparent() {
+//         let opacity = 1; // 透明度の初期値
+//         const timer = setInterval(() => {
+//             if (opacity <= 0) {
+//                 clearInterval(timer); // タイマーを停止
+//                 document.body.style.opacity = 1; // 透明度を元に戻す
+//             } else {
+//                 opacity -= 0.1; // 透明度を減少させる
+//                 document.body.style.opacity = opacity; // 透明度を設定
+//             }
+//         }, 100);
+//     }
+
+//     // 画面を回転する関数
+//     function rotateScreen() {
+//         let rotation = 0; // 回転角度の初期値
+//         const timer = setInterval(() => {
+//             if (rotation >= 360) {
+//                 clearInterval(timer); // タイマーを停止
+//                 document.body.style.transform = 'rotate(0deg)'; // 回転角度を元に戻す
+//             } else {
+//                 rotation += 10; // 回転角度を増加させる
+//                 document.body.style.transform = `rotate(${rotation}deg)`; // 回転角度を設定
+//             }
+//         }, 100);
+//     }
+
+//     // ロード時に透明度と回転角度を復元
+//     if (opacityValue) {
+//         document.body.style.opacity = opacityValue;
+//     }
+//     if (rotationAngle) {
+//         document.body.style.transform = `rotate(${rotationAngle}deg)`;
+//     }
+
+//     // ページが開かれるたびに透明にして回転する
+//     makeTransparent();
+//     rotateScreen();
+
+//     // // 画面が透明になった後、復活させる
+//     document.addEventListener('visibilitychange', () => {
+//         if (document.visibilityState === 'visible') {
+//             makeTransparent();
+//             rotateScreen();
+//         }
+//     });
+
+//     // ページを閉じる前に透明度と回転角度を保存
+//     window.addEventListener('beforeunload', () => {
+//         localStorage.setItem('opacityValue', document.body.style.opacity);
+//         localStorage.setItem('rotationAngle', getRotationAngle());
+//     });
+
+//     // ローカルストレージから保存された回転角度を取得する関数
+//     function getRotationAngle() {
+//         const transformStyle = document.body.style.transform;
+//         const match = transformStyle.match(/rotate\((\d+)deg\)/);
+//         if (match && match[1]) {
+//             return match[1];
+//         }
+//         return null;
+//     }
+// });

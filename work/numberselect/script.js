@@ -44,7 +44,9 @@ function isNumber(box) {
         document.querySelector('#main').innerText = '正解！！またやる？';
     } else if (box.innerText > target) {
         document.querySelector('#main').innerText = `？ ${box.innerText}より小さいよ ？`;
+        box.style.opacity = 0.5;
     } else {
         document.querySelector('#main').innerText = `？ ${box.innerText}より大きいよ ？`;
+        box.style.opacity = 0.5;
     }
 }
